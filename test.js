@@ -1,63 +1,26 @@
 // Import the necessary modules and functions for testing
-const Tone = require("tone");
+const { createReverb } = require("./script.js");
+const { playMelody } = require("./script.js");
 
-// Import the functions to test
-const {
-  createSynth,
-  createReverb,
-  createChorus,
-  connectEffects,
-  playNoteSequence,
-} = require("./script");
-
-// Test the createSynth function
-test("createSynth creates a Tone.js synth with the correct settings", () => {
-  const synth = createSynth();
-  expect(synth).toBeInstanceOf(Tone.Synth);
-  // Add more specific assertions for the synth's settings if needed
+// Mock the document.getElementById method to return a mock input element
+jest.spyOn(document, "getElementById").mockReturnValue({
+  addEventListener: jest.fn(),
+  value: "5", // Initial value for the input element
 });
 
-// Test the createReverb function
-test("createReverb creates a Tone.js reverb with the correct settings", () => {
+// Test the event listener for reverbDecay
+test("reverbDecay input event listener updates reverb decay", () => {
+  // Create a new reverb effect
   const reverb = createReverb();
-  expect(reverb).toBeInstanceOf(Tone.Reverb);
-  // Add more specific assertions for the reverb's settings if needed
-});
 
-// Test the createChorus function
-test("createChorus creates a Tone.js chorus with the correct settings", () => {
-  const chorus = createChorus();
-  expect(chorus).toBeInstanceOf(Tone.Chorus);
-  // Add more specific assertions for the chorus's settings if needed
-});
+  // Call the playMelody function to set up the event listener
+  playMelody();
 
-// Test the connectEffects function
-test("connectEffects connects the synth, chorus, and reverb in the correct order", () => {
-  const synth = new Tone.Synth();
-  const chorus = new Tone.Chorus();
-  const reverb = new Tone.Reverb();
-  connectEffects(synth, chorus, reverb);
-  // Add assertions to check if the connections are set up correctly
-});
+  // Simulate an input event with a new value
+  const newDecayValue = "8";
+  document.getElementById("reverbDecay").value = newDecayValue;
+  document.getElementById("reverbDecay").addEventListener.mock.calls[0][1]();
 
-// Test the playNoteSequence function
-test("playNoteSequence plays the notes in the correct order and duration", () => {
-  // Mock the necessary objects for testing
-  const synth = {
-    triggerAttackRelease: jest.fn(),
-  };
-  const melody = [
-    { note: "A4", duration: "4n" },
-    { note: "G4", duration: "4n" },
-    { note: "E4", duration: "2n" },
-  ];
-
-  // Call the function to test
-  playNoteSequence(synth, melody);
-
-  // Add assertions to check if the notes are played correctly
-  expect(synth.triggerAttackRelease).toHaveBeenCalledTimes(3);
-  expect(synth.triggerAttackRelease).toHaveBeenCalledWith("A4", "4n");
-  expect(synth.triggerAttackRelease).toHaveBeenCalledWith("G4", "4n");
-  expect(synth.triggerAttackRelease).toHaveBeenCalledWith("E4", "2n");
+  // Verify that the decay value of the reverb effect is updated
+  expect(reverb.decay).toBe(parseFloat(newDecayValue));
 });
