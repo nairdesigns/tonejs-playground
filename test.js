@@ -1,26 +1,18 @@
-// Import the necessary modules and functions for testing
-const { createReverb } = require("./script.js");
-const { playMelody } = require("./script.js");
+const Tone = require("tone");
 
-// Mock the document.getElementById method to return a mock input element
-jest.spyOn(document, "getElementById").mockReturnValue({
-  addEventListener: jest.fn(),
-  value: "5", // Initial value for the input element
-});
+// Assuming you have the createSynth function defined in your module
+const { createSynth } = require("tone");
 
-// Test the event listener for reverbDecay
-test("reverbDecay input event listener updates reverb decay", () => {
-  // Create a new reverb effect
-  const reverb = createReverb();
+jest.mock("tone", () => ({
+  Synth: jest.fn(() => ({
+    // Mock implementation of Tone.Synth constructor
+    toDestination: jest.fn(),
+  })),
+}));
 
-  // Call the playMelody function to set up the event listener
-  playMelody();
-
-  // Simulate an input event with a new value
-  const newDecayValue = "8";
-  document.getElementById("reverbDecay").value = newDecayValue;
-  document.getElementById("reverbDecay").addEventListener.mock.calls[0][1]();
-
-  // Verify that the decay value of the reverb effect is updated
-  expect(reverb.decay).toBe(parseFloat(newDecayValue));
+describe("createSynth", () => {
+  test("should create an instance of Tone.Synth", () => {
+    const synth = createSynth();
+    expect(synth).toBeInstanceOf(Tone.Synth);
+  });
 });

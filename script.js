@@ -1,5 +1,7 @@
 const reverb = createReverb();
 const chorus = createChorus();
+// Get the reverbDecay element
+const reverbDecayInput = document.getElementById("reverbDecay");
 
 function playMelody() {
   // Create a Tone.js polyphonic synth
@@ -7,14 +9,19 @@ function playMelody() {
 
   // Define the melody with notes and durations
   const melody = [
-    { note: "A4", duration: "4n" },
-    { note: "G4", duration: "4n" },
-    { note: "E4", duration: "2n" },
-    { note: "C4", duration: "4n" },
-    { note: "D4", duration: "4n" },
-    { note: "E4", duration: "4n" },
-    { note: "F4", duration: "4n" },
-    { note: "E4", duration: "2n" },
+    { note: "C4", duration: "8n" },
+    { note: "E4", duration: "8n" },
+    { note: "G4", duration: "8n" },
+    { note: "C4", duration: "8n" },
+    { note: "E4", duration: "8n" },
+    { note: "G4", duration: "8n" },
+    { note: "F4", duration: "8n" },
+    { note: "E4", duration: "8n" },
+    { note: "D4", duration: "8n" },
+    { note: "G4", duration: "8n" },
+    { note: "F4", duration: "8n" },
+    { note: "E4", duration: "8n" },
+    { note: "D4", duration: "8n" },
   ];
 
 
@@ -71,8 +78,6 @@ function playNoteSequence(synth, melody) {
   playNote();
 }
 
-// Get the reverbDecay element
-const reverbDecayInput = document.getElementById("reverbDecay");
 
 // Add an event listener to the reverbDecay input element
 reverbDecayInput.addEventListener("input", () => {
