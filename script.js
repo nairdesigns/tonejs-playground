@@ -17,7 +17,18 @@ function playMelody() {
   // Create and connect effects
   const reverb = createReverb();
   const chorus = createChorus();
+  
   connectEffects(synth, chorus, reverb);
+
+    // Get the reverbDecay element
+  const reverbDecayInput = document.getElementById("reverbDecay");
+
+  // Add an event listener to the reverbDecay input element
+  reverbDecayInput.addEventListener("input", () => {
+    const decayValue = parseFloat(reverbDecayInput.value);
+    // Set the new decay value for the reverb effect
+    reverb.decay = decayValue;
+  });
 
   // Play the melody
   playNoteSequence(synth, melody);
