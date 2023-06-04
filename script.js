@@ -1,5 +1,7 @@
-const reverb = createReverb();
-const chorus = createChorus();
+const Tone = require("tone");
+
+// const reverb = createReverb();
+// const chorus = createChorus();
 // Get the reverbDecay element
 const reverbDecayInput = document.getElementById("reverbDecay");
 
@@ -24,13 +26,11 @@ function playMelody() {
     { note: "D4", duration: "8n" },
   ];
 
-
-
   connectEffects(synth, chorus, reverb);
 
   // Play the melody
   playNoteSequence(synth, melody);
-  console.log(reverb.decay)
+  console.log(reverb.decay);
 }
 
 function createSynth() {
@@ -78,12 +78,13 @@ function playNoteSequence(synth, melody) {
   playNote();
 }
 
+// // Add an event listener to the reverbDecay input element
+// reverbDecayInput.addEventListener("input", () => {
+//   const decayValue = parseFloat(reverbDecayInput.value);
+//   // Set the new decay value for the reverb effect
+//   reverb.decay = decayValue;
+//   console.log("reverb working");
+//   console.log(reverb.decay);
+// });
 
-// Add an event listener to the reverbDecay input element
-reverbDecayInput.addEventListener("input", () => {
-  const decayValue = parseFloat(reverbDecayInput.value);
-  // Set the new decay value for the reverb effect
-  reverb.decay = decayValue;
-  console.log("reverb working");
-  console.log(reverb.decay)
-});
+module.exports = { createSynth };
