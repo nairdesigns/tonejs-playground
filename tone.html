@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tone.js Project - Sad Melody</title>
+    <script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
+    <script>
+      function playMelody() {
+        // Create a Tone.js polyphonic synth
+        const synth = new Tone.PolySynth().toDestination();
+
+        // Define the sad melody with notes and durations
+        const melody = [
+          { note: "A4", duration: "4n" },
+          { note: "G4", duration: "4n" },
+          { note: "E4", duration: "2n" },
+          { note: "C4", duration: "4n" },
+          { note: "D4", duration: "4n" },
+          { note: "E4", duration: "4n" },
+          { note: "F4", duration: "4n" },
+          { note: "E4", duration: "2n" },
+        ];
+
+        // Play the melody
+        let index = 0;
+        const playNote = () => {
+          if (index >= melody.length) return;
+          const { note, duration } = melody[index];
+          synth.triggerAttackRelease(note, duration);
+          index++;
+          setTimeout(playNote, Tone.Time(duration).toMilliseconds());
+        };
+
+        playNote();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Tone.js Project - Sad Melody</h1>
+    <button onclick="playMelody()">Click me to play sad melody!</button>
+  </body>
+</html>
