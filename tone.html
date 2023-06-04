@@ -3,13 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <title>Tone.js Project - Smooth Synth with Effects</title>
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
     <script src="synth.js"></script>
   </head>
   <body>
     <h1>Tone.js Project - Smooth Synth with Effects</h1>
-    <button onclick="playMelody()">
-      Click me to play smooth synth with effects!
-    </button>
+    <div id="controls">
+      <h2>Reverb</h2>
+      <label for="reverbDecay">Decay:</label>
+      <input
+        type="range"
+        id="reverbDecay"
+        min="0"
+        max="10"
+        step="0.1"
+        value="5"
+      />
+
+      <h2>Chorus</h2>
+      <label for="chorusFrequency">Frequency:</label>
+      <input
+        type="range"
+        id="chorusFrequency"
+        min="0"
+        max="10"
+        step="0.1"
+        value="1.5"
+      />
+
+      <label for="chorusDepth">Depth:</label>
+      <input
+        type="range"
+        id="chorusDepth"
+        min="0"
+        max="1"
+        step="0.05"
+        value="0.5"
+      />
+
+      <label for="chorusDelay">Delay Time:</label>
+      <input
+        type="range"
+        id="chorusDelay"
+        min="0"
+        max="10"
+        step="0.1"
+        value="3"
+      />
+
+      <button onclick="playSmoothSynthWithEffects()">
+        Click me to play smooth synth with effects!
+      </button>
+    </div>
   </body>
 </html>
