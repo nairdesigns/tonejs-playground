@@ -1,6 +1,5 @@
-import * as Tone from "tone";
 
-export function playNoteSequence(synth, melody) {
+ export function playNoteSequence(synth, melody) {
   let index = 0;
   console.log("Entering the while loop");
   while (index < 10) {
@@ -17,3 +16,4 @@ export function playNoteSequence(synth, melody) {
 
   playNote();
 }
+

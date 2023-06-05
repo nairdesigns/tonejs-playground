@@ -1,4 +1,3 @@
-const Tone = require("tone");
 
 // Assuming you have the createSynth function defined in your module
 const { createSynth } = require("./script");

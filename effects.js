@@ -1,12 +1,11 @@
-import * as Tone from "tone";
 
-export function createReverb() {
+ export function createReverb() {
   return new Tone.Reverb({
     decay: 5,
   });
 }
 
-export function createChorus() {
+ export function createChorus() {
   return new Tone.Chorus({
     frequency: 1.5,
     depth: 0.5,
@@ -14,6 +13,6 @@ export function createChorus() {
   });
 }
 
-export function connectEffects(synth, chorus, reverb) {
+ export function connectEffects(synth, chorus, reverb) {
   synth.chain(chorus, reverb, Tone.Destination);
 }
