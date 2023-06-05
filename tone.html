@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="node_modules/tone/build/Tone.js"></script>
+
     <title>Nair Synth</title>
   </head>
   <body>
@@ -13,6 +15,6 @@
 
     <button id="playButton">Play Melody</button>
 
-    <script src="app.js" type="module"></script>
+    <script src="app.js" type="module" onclick="playMelody()"></script>
   </body>
 </html>

@@ -10,6 +10,7 @@ function playMelody(reverbDecayInput) {
 
   connectEffects(synth, chorus, reverb);
 
+  console.log(reverbDecayInput);
   const melody = [
     // Define the melody...
   ];
@@ -19,3 +20,4 @@ function playMelody(reverbDecayInput) {
 
   if (reverbDecayInput) {
     reverbDecayInput.addEventListener
+  }}

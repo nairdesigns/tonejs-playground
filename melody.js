@@ -2,6 +2,11 @@ import * as Tone from "tone";
 
 export function playNoteSequence(synth, melody) {
   let index = 0;
+  console.log("Entering the while loop");
+  while (index < 10) {
+    console.log("In the while loop. Index = " + index);
+    index++;
+  }
   const playNote = () => {
     if (index >= melody.length) return;
     const { note, duration } = melody[index];
