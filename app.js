@@ -42,7 +42,7 @@ export function playMelody() {
     
     playNoteSequence(synth, melody);
     console.log(reverb.decay);
-    console.log(synth)
+    console.log('synth:' + synth)
 
     
 }

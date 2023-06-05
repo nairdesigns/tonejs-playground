@@ -1,16 +1,30 @@
 "use strict";
 
-var _melody = require("./melody");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.playMelody = playMelody;
+var _synth = require("./synth.js");
+var _effects = require("./effects.js");
+var _melody = require("./melody.js");
 console.log('app.js loaded!');
-function playMelody(reverbDecayInput) {
-  var synth = createSynth();
-  var chorus = createChorus();
-  var reverb = createReverb();
-  document.getElementById("playButton").addEventListener("click", function () {
-    var reverbDecayInput = document.getElementById("reverbDecay");
-    playMelody(reverbDecayInput);
+document.getElementById("playButton").addEventListener("click", playMelody);
+console.log('playbutton added');
+// get reverbdecay input
+var reverbDecayInput = document.getElementById("reverbDecay");
+var synth = (0, _synth.createSynth)();
+var chorus = (0, _effects.createChorus)();
+var reverb = (0, _effects.createReverb)();
+if (reverbDecayInput) {
+  reverbDecayInput.addEventListener("input", function () {
+    var decayValue = parseFloat(reverbDecayInput.value);
+    reverb.decay = decayValue;
+    console.log("reverb working");
+    console.log(reverb.decay);
   });
-  connectEffects(synth, chorus, reverb);
+}
+function playMelody() {
+  (0, _effects.connectEffects)(synth, chorus, reverb);
   console.log(reverbDecayInput);
   var melody = [{
     note: "A4",
@@ -39,15 +53,5 @@ function playMelody(reverbDecayInput) {
   }];
   (0, _melody.playNoteSequence)(synth, melody);
   console.log(reverb.decay);
-  if (reverbDecayInput) {
-    reverbDecayInput.addEventListener("input", function () {
-      var decayValue = parseFloat(reverbDecayInput.value);
-      reverb.decay = decayValue;
-      console.log("reverb working");
-      console.log(reverb.decay);
-    });
-  }
+  console.log('synth:' + synth);
 }
-module.exports = {
-  playMelody: playMelody
-};
