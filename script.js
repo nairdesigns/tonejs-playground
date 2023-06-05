@@ -1,14 +1,12 @@
-  Tone = require("tone");
-
-// Get the reverbDecay element
 const reverbDecayInput = document.getElementById("reverbDecay");
+const synth = createSynth();
+const chorus = createChorus();
+const reverb = createReverb();
 
 function playMelody() {
   // Create a Tone.js polyphonic synth
 
-  const synth = createSynth();
-const chorus = createChorus();
-const reverb = createReverb();
+
 
 
   // Define the melody with notes and durations
@@ -80,7 +78,8 @@ function playNoteSequence(synth, melody) {
   playNote();
 }
 
-if (process.env.NODE_ENV !== "test") {
+
+if (typeof window !== undefined) {
   // Add an event listener to the reverbDecay input element
   reverbDecayInput.addEventListener("input", () => {
     const decayValue = parseFloat(reverbDecayInput.value);
@@ -89,9 +88,6 @@ if (process.env.NODE_ENV !== "test") {
     console.log("reverb working");
     console.log(reverb.decay);
   });
-  
-  const reverbDecayInput = document.getElementById("reverbDecay");
 }
-
 
 module.exports = { createSynth };
