@@ -1,5 +1,4 @@
-
- export function createSynth() {
+export function createSynth() {
   return new Tone.Synth({
     oscillator: {
       type: "sine",
@@ -12,4 +11,3 @@
     },
   }).toDestination();
 }
-    
